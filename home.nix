@@ -8,6 +8,7 @@
     ./modules/i3
     ./modules/eww
     ./modules/private.nix
+    ./modules/cursor.nix
   ];
 
   home.username = "catperson";
