@@ -93,25 +93,27 @@ EOF
 							in "${script}/bin/setup-cursor";
 						};
 					};
+
+					# Setup Flatpak service (moved inside the module)
+					systemd.services.setup-flatpak = {
+						description = "Setup Flatpak and install Floorp";
+						wantedBy = ["multi-user.target"];
+						after = ["network-online.target"];
+						wants = ["network-online.target"];
+						serviceConfig = {
+							Type = "oneshot";
+							RemainAfterExit = true;
+							ExecStart = let
+								script = pkgs.writeShellScriptBin "setup-flatpak" ''
+									${pkgs.flatpak}/bin/flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+									${pkgs.flatpak}/bin/flatpak install -y flathub one.ablaze.floorp
+								'';
+							in "${script}/bin/setup-flatpak";
+						};
+					};
 				})
 			];
 			specialArgs = { inherit system; };
-		};
-
-		systemd.services.setup-flatpak = {
-			description = "Setup Flatpak and install Floorp";
-			wantedBy = ["multi-user.target"];
-			after = ["network-online.target"];
-			wants = ["network-online.target"];
-			serviceConfig = {
-				Type = "oneshot";
-				ExecStart = let
-					script = pkgs.writeShellScriptBin "setup-flatpak" ''
-						${pkgs.flatpak}/bin/flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-						${pkgs.flatpak}/bin/flatpak install -y flathub one.ablaze.floorp
-					'';
-				in "${script}/bin/setup-flatpak";
-			};
 		};
 	};
 }
