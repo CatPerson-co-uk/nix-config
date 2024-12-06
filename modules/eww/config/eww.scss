@@ -1,0 +1,113 @@
+// Catppuccin Mocha colors
+$base: #1e1e2e;
+$mantle: #181825;
+$crust: #11111b;
+
+$text: #cdd6f4;
+$subtext0: #a6adc8;
+$subtext1: #bac2de;
+
+$surface0: #313244;
+$surface1: #45475a;
+$surface2: #585b70;
+
+$overlay0: #6c7086;
+$overlay1: #7f849c;
+$overlay2: #9399b2;
+
+$blue: #89b4fa;
+$lavender: #b4befe;
+$sapphire: #74c7ec;
+$sky: #89dceb;
+$teal: #94e2d5;
+$green: #a6e3a1;
+$yellow: #f9e2af;
+$peach: #fab387;
+$maroon: #eba0ac;
+$red: #f38ba8;
+$mauve: #cba6f7;
+$pink: #f5c2e7;
+$flamingo: #f2cdcd;
+$rosewater: #f5e0dc;
+
+* {
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 14px;
+}
+
+// Use Font Awesome for icons
+.volume label:first-child,
+.brightness label:first-child,
+.memory label:first-child,
+.cpu label:first-child,
+.clock label:first-child {
+  font-family: "Font Awesome 6 Free Solid";
+  font-size: 14px;
+}
+
+.bar {
+  background-color: $base;
+  padding: 8px;
+  border-radius: 12px;
+  margin: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+// Workspaces
+.workspaces {
+  background-color: $surface0;
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin: 0 4px;
+  
+  .workspace-entry {
+    padding: 0 8px;
+    color: $text;
+    
+    &.focused {
+      color: $mauve;
+      font-weight: bold;
+    }
+    
+    &.urgent {
+      color: $red;
+    }
+  }
+}
+
+// System
+.system {
+  background-color: $surface0;
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin: 0 4px;
+  
+  label {
+    color: $text;
+    margin: 0 4px;
+  }
+  
+  .volume label:first-child { color: $blue; }
+  .brightness label:first-child { color: $yellow; }
+  .memory label:first-child { color: $green; }
+  .cpu label:first-child { color: $mauve; }
+}
+
+// Clock
+.clock {
+  background-color: $surface0;
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin: 0 4px;
+  
+  label {
+    color: $text;
+    margin: 0 4px;
+    
+    &:first-child {
+      color: $lavender;
+      font-size: 16px;
+    }
+  }
+} 

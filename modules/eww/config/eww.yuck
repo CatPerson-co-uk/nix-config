@@ -1,0 +1,22 @@
+(include "widgets/workspaces.yuck")
+(include "widgets/system.yuck")
+(include "widgets/clock.yuck")
+
+(defwindow bar
+  :monitor 0
+  :geometry (geometry :x "0.5%"
+                     :y "0.5%"
+                     :width "99%"
+                     :height "30px"
+                     :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  :windowtype "dock"
+  (centerbox :orientation "h"
+            :class "bar"
+    (box :class "left" :halign "start" :space-evenly false
+      (workspaces))
+    (box :class "center" :halign "center" :space-evenly false
+      (clock))
+    (box :class "right" :halign "end" :space-evenly false
+      (system)))) 

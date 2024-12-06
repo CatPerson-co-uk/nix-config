@@ -1,0 +1,17 @@
+# Ignore private configurations
+modules/private.nix
+
+# Nix build outputs
+result
+result-*
+
+# Editor specific files
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS specific files
+.DS_Store
+.directory
+.Trash-* 

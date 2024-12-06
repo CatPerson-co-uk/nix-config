@@ -1,0 +1,32 @@
+(defpoll volume :interval "1s"
+  "pamixer --get-volume")
+
+(defpoll brightness :interval "1s"
+  "brightnessctl -m -d intel_backlight | awk -F, '{print substr($4, 0, length($4)-1)}'")
+
+(defpoll memory :interval "10s"
+  "scripts/memory")
+
+(defpoll cpu :interval "10s"
+  "scripts/cpu")
+
+(defwidget system []
+  (box :class "system"
+       :space-evenly false
+       :spacing 10
+    (box :class "volume"
+         :space-evenly false
+      (label :text "")
+      (label :text "${volume}%"))
+    (box :class "brightness"
+         :space-evenly false
+      (label :text "")
+      (label :text "${brightness}%"))
+    (box :class "memory"
+         :space-evenly false
+      (label :text "")
+      (label :text "${memory}%"))
+    (box :class "cpu"
+         :space-evenly false
+      (label :text "")
+      (label :text "${cpu}%")))) 

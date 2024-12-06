@@ -1,0 +1,10 @@
+# This file contains private configurations and should not be committed to Git
+{ config, pkgs, lib, ... }:
+
+{
+  programs.git = {
+    enable = true;
+    userName = "GITHUB USERNAME";
+    userEmail = "GITHUB EMAIL";
+  };
+}   

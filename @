@@ -1,0 +1,29 @@
+# flake.nix
+{
+	description = "catperson nixos config";
+	inputs.nixos.url = "github:NixOS/nixpkgs/nixos-24.05";
+
+	outputs = {self, nixos, ...}: let
+	system = "x86_64-linux";
+	
+	in {
+		nixosConfigurations.myMachine = nixos.lib.nixosSystem {
+			system = system;
+			modules = [
+				./configuration.nix
+				{
+					services.flatpak.enable = true;
+					
+					systemd.services.install-floorp-flatpak = {
+						description = "Install Floorp Flatpak";
+						wantedBy = ["multi-user.target"]
+					 	serviceConfig.ExecStart = "/run/current-system/sw/bin/flatpak install -y flathub one.Floorp.Floorp";
+						serviceConfig.type = "oneshot";
+						install.wantedBy = [ "multi-user.target"];
+					};
+				}
+			];
+			specialArgs = { inherit system; };
+		};
+	};
+}

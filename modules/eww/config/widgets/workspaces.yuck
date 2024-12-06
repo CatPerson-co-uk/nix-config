@@ -1,0 +1,12 @@
+(deflisten workspaces :initial "[]" "scripts/get-workspaces")
+(deflisten current_workspace :initial "1" "scripts/get-active-workspace")
+
+(defwidget workspaces []
+  (eventbox :onscroll "scripts/change-active-workspace {} ${current_workspace}"
+    (box :class "workspaces"
+         :space-evenly true
+      (for workspace in workspaces
+        (eventbox :onclick "i3-msg workspace ${workspace.name}"
+          (box :class "workspace-entry ${workspace.focused ? 'focused' : ''} ${workspace.urgent ? 'urgent' : ''}"
+               :space-evenly true
+            (label :text "${workspace.name}"))))))) 

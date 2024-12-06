@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Initialize workspace 1 if it doesn't exist
+i3-msg -t get_workspaces | jq -e '.[] | select(.name=="1")' > /dev/null || i3-msg 'workspace number 1'
+
+# Get all workspaces
+i3-msg -t get_workspaces | jq -c . 
